@@ -9,8 +9,17 @@ function saveToLocalStorage(event) {
         email,
         phonenumber
     }
-    localStorage.setItem(obj.email, JSON.stringify(obj))
-    showNewUserOnScreen(obj)
+
+    axios.Post("https://crudcrud.com/api/0e710c21cc2644c797d79bbb6d733135/AppointmentData",obj)
+    .then((response)=>{
+        showNewUserOnScreen(response.data)
+        console.log(response)
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+    //localStorage.setItem(obj.email, JSON.stringify(obj))
+    // showNewUserOnScreen(obj)
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -36,8 +45,8 @@ function showNewUserOnScreen(user){
 
     const parentNode = document.getElementById('listOfUsers');
     const childHTML = `<li id=${user.email}> ${user.name} - ${user.email}
-    <button onclick=deleteUser('${user.email}')> Delete User </button>
-    <button onclick=editUserDetails('${user.email}','${user.name}','${user.phonenumber}')>Edit User </button>
+    <button onclick=editUserDetails('${user.email}','${user.name}','${user.phonenumber}')> Edit </button>
+    <button onclick=deleteUser('${user.email}')> Delete </button>
     </li>`
 
     parentNode.innerHTML = parentNode.innerHTML + childHTML;
