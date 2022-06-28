@@ -39,7 +39,6 @@ function addItem(e){
     // Append li to list
     itemList.appendChild(li);
 }
-
 function removeItem(e){
  if(e.target.classList.contains('delete')){
      if(confirm('Are you sure?')){
@@ -48,7 +47,6 @@ function removeItem(e){
     }
  }   
 }
-
 // Filter Items
 function filterItems(e){
     // convert text to lowercase
